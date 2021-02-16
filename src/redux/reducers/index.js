@@ -30,10 +30,8 @@ function cart(state = initialState, action) {
             const shoeId = action.payload.content
             const cartData = state.cart
             if (cartData[shoeId].amount > 1) {
-                console.log("decrement")
                 cartData[shoeId].amount--
             } else {
-                console.log("remove")
                 delete cartData[shoeId]
             }
             state.amount--

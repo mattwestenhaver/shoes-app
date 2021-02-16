@@ -7,8 +7,7 @@ class Cart extends React.Component {
     constructor() {
         super()
         this.state = {
-            open: false
-            
+            open: false   
         }
     }
     
@@ -25,6 +24,9 @@ class Cart extends React.Component {
             <div className="cart__container">
                 <p onClick={this.toggleCart.bind(this)}>Cart ({amount})</p>
                 <Modal
+                    className="cart__modal"
+                    size='small'
+                    closeIcon={true}
                     open={this.state.open}
                     onClose={this.toggleCart.bind(this)}
                 >

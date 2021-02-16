@@ -1,8 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { removeShoe } from '../../redux/actions'
+import { removeShoe, addShoe } from '../../redux/actions'
 
 class CartContent extends React.Component {
+    addToCart(shoe) {
+        this.props.addShoe(shoe)
+    }
     removeFromCart(id) {
         this.props.removeShoe(id)
     }
@@ -23,19 +26,28 @@ class CartContent extends React.Component {
     render() {
         const { cart } = this.props
         return (
-            <div>
+            <div className="cart__content">
                 {Object.keys(cart).map((key) => {
                     return (
-                        <div key={key}>
-                            <h4>
-                                {cart[key].shoe.name} x {cart[key].amount} - ${this.convertPrice(cart[key].shoe.price.amount * cart[key].amount)}
-                                <button onClick={this.removeFromCart.bind(this, key)}>remove</button>
-                            </h4>
-                            
+                        <div key={key} className="cart-item__container">
+                            <div className="cart-item__thumbnail">
+                                <img src={cart[key].shoe.image.url} alt={"image of " + cart[key].shoe.name} />
+                            </div>
+                            <div className="cart-item__info">
+                                <h3>{cart[key].shoe.name}</h3>
+                                <div>
+                                    <p>Quantity: {cart[key].amount}</p>
+                                    <button className="cart-item__add" onClick={this.addToCart.bind(this, cart[key].shoe)}>+</button>
+                                    <button className="cart-item__remove" onClick={this.removeFromCart.bind(this, key)}>-</button>
+                                </div>
+                            </div>
+                            <div className="cart-item__price">
+                                <h3>${this.convertPrice(cart[key].shoe.price.amount * cart[key].amount)}</h3>
+                            </div>
                         </div>
                     )
                 })}
-                <h2>Total: ${this.calculateCartTotal()}</h2>
+                <h3 className="cart__total">Total: ${this.calculateCartTotal()}</h3>
             </div>
             
         )
@@ -44,5 +56,5 @@ class CartContent extends React.Component {
 
 export default connect(
     null,
-    { removeShoe }
+    { removeShoe, addShoe }
 )(CartContent)
