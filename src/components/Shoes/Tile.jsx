@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { addShoe } from '../../redux/actions'
 
 class Tile extends React.Component {
     constructor(props) {
@@ -6,6 +8,10 @@ class Tile extends React.Component {
         this.state = {
             shoe: props.shoe
         }
+    }
+
+    addToCart() {
+        this.props.addShoe(this.state.shoe)
     }
 
     render() {
@@ -17,8 +23,13 @@ class Tile extends React.Component {
                         <img src={shoe.image.url} alt={"image of " + shoe.name} />
                     </div>
                     <div className="tile__info">
-                        <h2>{shoe.name}</h2>
-                        <p>{shoe.price.amount}</p>
+                        <div>
+                            <h2>{shoe.name}</h2>
+                            <p>{shoe.price.amount}</p>
+                        </div>
+                        <div>
+                            <button onClick={this.addToCart.bind(this)}>add shoe</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -26,4 +37,7 @@ class Tile extends React.Component {
     }
 }
 
-export default Tile
+export default connect(
+    null,
+    { addShoe }
+)(Tile)
