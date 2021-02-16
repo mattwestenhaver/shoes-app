@@ -20,15 +20,13 @@ class Shoes extends React.Component {
     }
 
     render() {
-
         const { shoes } = this.state
         return (
             <div className="shoes__container">
-                <h1>Simply Shoes</h1>
                 <div className="shoes-tile__container">
                     {shoes.map(shoe => {
                         return (
-                            <Tile shoe={shoe} />
+                            <Tile key={shoe.id} shoe={shoe} />
                         )
                     })}
                 </div>

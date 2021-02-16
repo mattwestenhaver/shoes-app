@@ -10,6 +10,10 @@ class Tile extends React.Component {
         }
     }
 
+    convertPrice(price) {
+        return (price / 100).toFixed(2)
+    }
+
     addToCart() {
         this.props.addShoe(this.state.shoe)
     }
@@ -23,13 +27,11 @@ class Tile extends React.Component {
                         <img src={shoe.image.url} alt={"image of " + shoe.name} />
                     </div>
                     <div className="tile__info">
-                        <div>
                             <h2>{shoe.name}</h2>
-                            <p>{shoe.price.amount}</p>
-                        </div>
-                        <div>
-                            <button onClick={this.addToCart.bind(this)}>add shoe</button>
-                        </div>
+                            <p>{shoe.price.currency === "USD" ? "$" : null}{this.convertPrice(shoe.price.amount)}</p>
+                    </div>
+                    <div className="tile__button">
+                        <button onClick={this.addToCart.bind(this)}>Add To Cart</button>
                     </div>
                 </div>
             </div>
