@@ -1,13 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { removeShoe, addShoe } from '../../redux/actions'
+import { toast } from 'react-toastify';
 
 class CartContent extends React.Component {
     addToCart(shoe) {
         this.props.addShoe(shoe)
+        toast(`${shoe.name} added to cart.`);   
     }
-    removeFromCart(id) {
-        this.props.removeShoe(id)
+
+    removeFromCart(shoe) {
+        this.props.removeShoe(shoe.id)
+        toast(`${shoe.name} removed from cart.`);   
     }
 
     convertPrice(price) {
@@ -21,6 +25,16 @@ class CartContent extends React.Component {
         }, 0)
 
         return (total / 100).toFixed(2)
+    }
+
+    componentDidMount() {    
+        if(this.props.open){
+            document.body.style.overflow = 'hidden';
+        }    
+    }
+      
+    componentWillUnmount() {
+        document.body.style.overflow = 'unset';
     }
     
     render() {
@@ -38,7 +52,7 @@ class CartContent extends React.Component {
                                 <div>
                                     <p>Quantity: {cart[key].amount}</p>
                                     <button className="cart-item__add" onClick={this.addToCart.bind(this, cart[key].shoe)}>+</button>
-                                    <button className="cart-item__remove" onClick={this.removeFromCart.bind(this, key)}>-</button>
+                                    <button className="cart-item__remove" onClick={this.removeFromCart.bind(this, cart[key].shoe)}>-</button>
                                 </div>
                             </div>
                             <div className="cart-item__price">

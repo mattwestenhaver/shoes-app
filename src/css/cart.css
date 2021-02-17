@@ -1,0 +1,133 @@
+.cart__container {
+    width: 75px;
+    position: relative;
+}
+
+.cart__container > p {
+    line-height: 20px;
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.cart__container p:hover {
+    text-decoration: underline;
+}
+
+.cart__content .cart-item__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.cart-item__thumbnail {
+    width: 125px;
+}
+
+.cart-item__thumbnail img {
+    width: 125px;
+}
+
+.cart-item__info {
+    padding-top: 5px;
+    margin-left: 20px;
+}
+
+.cart-item__info div {
+    display: flex;
+}
+
+.cart-item__info p,
+.cart-item__info h3 {
+    font-size: 18px;
+    line-height: 28px;
+    margin: 0 10px 0 0;
+}
+
+.cart-item__remove,
+.cart-item__add {
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.cart-item__remove:hover {
+    color: red;
+}
+
+.cart-item__add:hover {
+    color: green;
+}
+
+.cart-item__price {
+    padding-top: 5px;
+    text-align: right;
+    flex-grow: 4;
+}
+
+.cart__total {
+    padding: 10px;
+    text-align: right;
+}
+
+.cart__modal-dimmer {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.cart__modal {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+    border-radius: 6px;
+    overflow: scroll;
+    margin: 0 auto;
+    width: 500px;
+    height: fit-content;
+    background-color: rgb(235, 235, 235);
+}
+
+.cart__modal-header {
+    border-radius: 4px 4px 0 0;
+    padding: 10px 0;
+    width: 500px;
+    background-color: black;
+    border-bottom: 1px solid white;
+    color: white;
+    position: fixed;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.cart__modal-header h2 {
+    flex-grow: 2;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.cart__modal-close {
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.cart__modal-close:hover {
+    color: rgb(215, 0, 0);
+}
+
+.cart__modal-content {
+    background-color: rgb(245, 245, 245);
+    padding: 80px 10px 10px 10px;
+    border-radius: 0 0 4px 4px;
+}

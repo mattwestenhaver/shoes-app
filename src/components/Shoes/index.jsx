@@ -7,8 +7,15 @@ class Shoes extends React.Component {
     constructor() {
         super()
         this.state = {
-            shoes: []
+            shoes: [],
+            searchValue: ''
         }
+    }
+
+    handleSearch = (e) => {
+        this.setState({
+            searchValue: e.currentTarget.value
+        })
     }
 
     componentDidMount() {
@@ -20,11 +27,15 @@ class Shoes extends React.Component {
     }
 
     render() {
-        const { shoes } = this.state
+        const { shoes, searchValue } = this.state
         return (
             <div className="shoes__container">
+                <div className="shoes__header">
+                    <h1>Simply Shoes</h1>
+                    <input className="search-input" value={this.state.searchValue} placeholder="Search..." onChange={this.handleSearch}/>
+                </div>
                 <div className="shoes-tile__container">
-                    {shoes.map(shoe => {
+                    {shoes.filter(shoe => shoe.name.toLowerCase().includes(searchValue)).map(shoe => {
                         return (
                             <Tile key={shoe.id} shoe={shoe} />
                         )
