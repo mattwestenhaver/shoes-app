@@ -35,10 +35,7 @@ class Cart extends React.Component {
                                     <VscChromeClose className="cart__modal-close" onClick={this.toggleCart.bind(this)}/>
                                 </div>
                                 <div className="cart__modal-content">
-                                    {amount > 0
-                                        ?   <CartContent cart={cart} amount={amount} open={open} />
-                                        :   <h3>Your cart is empty.</h3>
-                                    }
+                                    <CartContent cart={cart} amount={amount} open={open} />
                                 </div>
                             </div>
                         </div>

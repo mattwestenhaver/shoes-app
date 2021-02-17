@@ -6,19 +6,12 @@
 }
 
 .App-header {
-    margin: 0 1%;
+    margin: 0 5px;
     display: flex;
     flex-direction: row-reverse;
     height: 30px;
-    /* justify-content: space-between; */
 }
 
-.search-input {
-    margin-right: 1%;
-    width: 200px;
-    outline: none;
-    border: 1px solid gray;
-    border-radius: 4px;
-    padding: 0 10px;
-    height: 35px;
+.Toastify__toast-body {
+    color: black;
 }

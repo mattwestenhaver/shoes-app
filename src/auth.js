@@ -10,7 +10,7 @@ class AuthClient {
     }
 
     getShoes() {
-        return this.request({ method: "GET", url: "" }).then((response) => {
+        return this.request({ method: "GET", url: "/" }).then((response) => {
             if (response.status === 200) {
                 return response.data
             }

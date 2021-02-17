@@ -38,32 +38,33 @@ class CartContent extends React.Component {
     }
     
     render() {
-        const { cart } = this.props
+        const { cart, amount } = this.props
         return (
-            <div className="cart__content">
-                {Object.keys(cart).map((key) => {
-                    return (
-                        <div key={key} className="cart-item__container">
-                            <div className="cart-item__thumbnail">
-                                <img src={cart[key].shoe.image.url} alt={"image of " + cart[key].shoe.name} />
-                            </div>
-                            <div className="cart-item__info">
-                                <h3>{cart[key].shoe.name}</h3>
-                                <div>
-                                    <p>Quantity: {cart[key].amount}</p>
-                                    <button className="cart-item__add" onClick={this.addToCart.bind(this, cart[key].shoe)}>+</button>
-                                    <button className="cart-item__remove" onClick={this.removeFromCart.bind(this, cart[key].shoe)}>-</button>
+            amount > 0
+            ?   <div className="cart__content">
+                    {Object.keys(cart).map((key) => {
+                        return (
+                            <div key={key} className="cart-item__container">
+                                <div className="cart-item__thumbnail">
+                                    <img src={cart[key].shoe.image.url} alt={"image of " + cart[key].shoe.name} />
+                                </div>
+                                <div className="cart-item__info">
+                                    <h3>{cart[key].shoe.name}</h3>
+                                    <div>
+                                        <p>Quantity: {cart[key].amount}</p>
+                                        <button className="cart-item__add" onClick={this.addToCart.bind(this, cart[key].shoe)}>+</button>
+                                        <button className="cart-item__remove" onClick={this.removeFromCart.bind(this, cart[key].shoe)}>-</button>
+                                    </div>
+                                </div>
+                                <div className="cart-item__price">
+                                    <h3>${this.convertPrice(cart[key].shoe.price.amount * cart[key].amount)}</h3>
                                 </div>
                             </div>
-                            <div className="cart-item__price">
-                                <h3>${this.convertPrice(cart[key].shoe.price.amount * cart[key].amount)}</h3>
-                            </div>
-                        </div>
-                    )
-                })}
-                <h3 className="cart__total">Total: ${this.calculateCartTotal()}</h3>
-            </div>
-            
+                        )
+                    })}
+                    <h3 className="cart__total">Total: ${this.calculateCartTotal()}</h3>
+                </div>
+            : <h3 className="cart__empty">Your cart is empty.</h3>
         )
     }
 }
